@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import background from "../assets/layers.svg"; 
 
 export const GlobalStyle = createGlobalStyle`
 html, body, div, span, applet, object, iframe,
@@ -50,8 +51,44 @@ table {
 	border-spacing: 0;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 :root {
     --gray0: #101010;
-    --ge
+    --gray1: #323232;
+    --gray2: #545454;
+    --gray3: #767676;
+    --gray4: #989898;
+    --gray5: #BBBBBB;
+    --gray6: #CCCCCC;
+    --gray7: #DDDDDD;
+    --gray8: #EEEEEE;
+
+    --brand0: #8800c7;
+    
+    --purple0: #bf8bff;
+    --purple1: #cca3ff;
+    --purple2: #dabcff;
+    --purple3: #e5d0ff;
+
+    --font-default: 'M PLUS 1p', sans-serif;
 }
+
+body {
+    background-image: url(${() => background});
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    padding: 10px;
+}
+
 `
