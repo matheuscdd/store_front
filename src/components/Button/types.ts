@@ -1,5 +1,6 @@
 export interface iButton {
     text: string
-    type: "button" | "submit" | "reset"
-    disabled: boolean
+    type?: "button" | "submit" | "reset"
+    disabled?: boolean
+    action?: any
 }

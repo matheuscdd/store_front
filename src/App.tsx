@@ -1,8 +1,8 @@
-import { ToastContainer } from "react-toastify";
-import { Header } from "./components/Header";
-import { RoutesMain as Routes } from "./routes/RoutesMain";
-import { GlobalStyle } from "./styles/global";
-import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify"
+import { Header } from "./components/Header"
+import { RoutesMain as Routes } from "./routes/RoutesMain"
+import { GlobalStyle } from "./styles/global"
+import "react-toastify/dist/ReactToastify.css"
 
 export function App() {
   

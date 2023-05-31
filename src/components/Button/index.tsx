@@ -1,8 +1,8 @@
-import { iButton } from "./types";
+import { iButton } from "./types"
 
-export function Button({ disabled, text, type }: iButton) {
+export function Button({ disabled = false, text, type = "button", action }: iButton) {
     return (
-        <button
+        <button onClick={action}
             type={type}
             disabled={disabled}
         >

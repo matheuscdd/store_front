@@ -3,6 +3,7 @@ import { StyledHeader } from "./styles"
 import { capitalize } from "../../functions"
 import { useContext } from "react"
 import { UserContext } from "../../contexts/User"
+import { Client } from "../Client"
 
 
 export function Header() {
@@ -20,6 +21,12 @@ export function Header() {
                 <a key={crypto.randomUUID()} href="https://documetation-fullstack-project.vercel.app/" target="_blank">
                     Documentação
                 </a>
+                <a key={crypto.randomUUID()} href="https://github.com/matheuscdd/store_front" target="_blank">
+                    GitHub Front
+                </a>
+                <a key={crypto.randomUUID()} href="https://github.com/matheuscdd/store_back" target="_blank">
+                    GitHub Back
+                </a>
                 {
                 pages
                 .map(page => <Link 
@@ -29,8 +36,10 @@ export function Header() {
                     </Link>
                 )
                 }
-                
             </nav>
+            <section>
+                <Client/>
+            </section>
         </StyledHeader>
     )
 }

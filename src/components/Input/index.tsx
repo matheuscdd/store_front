@@ -1,4 +1,4 @@
-import { iInput } from "./types";
+import { iInput } from "./types"
 
 export function Input({ id, label, register, placeholder, type, disabled, error }: iInput) {
     

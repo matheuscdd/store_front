@@ -1,5 +1,5 @@
-import Image from "../../assets/void.svg";
-import { StyledMain } from "../../styles/main";
+import Image from "../../assets/void.svg"
+import { StyledMain } from "../../styles/main"
 
 export function NotFound() {
     return (

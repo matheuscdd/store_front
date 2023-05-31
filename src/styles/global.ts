@@ -1,5 +1,5 @@
-import { createGlobalStyle } from "styled-components";
-import background from "../assets/layers.svg"; 
+import { createGlobalStyle } from "styled-components"
+import background from "../assets/layers.svg"
 
 export const GlobalStyle = createGlobalStyle`
 html, body, div, span, applet, object, iframe,
@@ -78,6 +78,7 @@ input[type=number] {
     --purple1: #cca3ff;
     --purple2: #dabcff;
     --purple3: #e5d0ff;
+    --purple4: #65006246;
 
     --font-default: 'M PLUS 1p', sans-serif;
 }

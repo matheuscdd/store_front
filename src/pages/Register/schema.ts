@@ -1,4 +1,4 @@
-import * as yup from "yup";
+import * as yup from "yup"
 
 export const formSchema = yup.object().shape({
     name: yup
@@ -25,4 +25,4 @@ export const formSchema = yup.object().shape({
         .string()
         .min(7, 'O telefone precisa ter no mínimo 7 dígitos')
         .required("O telefone é obrigatório")
-});
+})
