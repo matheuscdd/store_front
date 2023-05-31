@@ -1,10 +1,15 @@
 import { Link } from "react-router-dom"
 import { StyledHeader } from "./styles"
 import { capitalize } from "../../functions"
+import { useContext } from "react"
+import { UserContext } from "../../contexts/User"
 
 
 export function Header() {
-    const pages = ["", "login", "register", "dashboard"]
+    const { isAuth } = useContext(UserContext)
+    const pages = ["", "login", "register"]
+    if (isAuth) pages.push("dashboard")
+
     return (
         <StyledHeader>
             <h1>Store</h1>

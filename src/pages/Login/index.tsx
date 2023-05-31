@@ -12,7 +12,7 @@ import { UserContext } from "../../contexts/User"
 
 
 export function Login() {
-    const { submitLogin } = useContext(UserContext)
+    const { submitLogin, loadForm } = useContext(UserContext)
 
     const { register, handleSubmit, formState: { errors } } = useForm<iFormLoginValues>({
         mode: "onSubmit",
@@ -27,7 +27,7 @@ export function Login() {
                 <form onSubmit={handleSubmit(submitLogin)}>
                     <Input 
                         id={EMAIL}
-                        disabled={false}
+                        disabled={loadForm}
                         label="Email"
                         placeholder="Digite o seu email"
                         register={register(EMAIL)}
@@ -36,7 +36,7 @@ export function Login() {
                     />
                     <Input 
                         id={PASSWORD}
-                        disabled={false}
+                        disabled={loadForm}
                         label="Senha"
                         placeholder="Digite a sua senha"
                         register={register(PASSWORD)}
@@ -45,7 +45,7 @@ export function Login() {
                     />
                     <Button
                         type="submit"
-                        disabled={false}
+                        disabled={loadForm}
                         text="Entrar"
                     />
                 </form>

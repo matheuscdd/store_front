@@ -5,6 +5,7 @@ import { iFormRegisterValues } from "../../pages/Register/types"
 import { api } from "../../services/api"
 import { toast } from "react-toastify"
 import { useNavigate } from "react-router-dom"
+import { configTokenReq } from "../../functions"
 
 export const UserContext = createContext({} as iUserContext)
 
@@ -16,18 +17,33 @@ export function UserProvider({ children }: iUserProviderProps) {
     const [token, setToken] = useState<string | null>(null)
     const navigate = useNavigate()
     const TOKEN = "@token" 
-    console.log(user)
+    
+    const LOAD = "load"
+    function commonFormControl() {
+        setLoadForm(false)
+        toast.dismiss(LOAD)
+    }
+
+    function successLoginRegister(path: string, msg: string) {
+        toast.success(msg)
+        navigate(path)
+        commonFormControl()
+    }
+    
+    function errorRequests(err: Error, msg: string) {
+        console.log(err)
+        toast.error(msg)
+        commonFormControl()
+    }
+
+    function startFormLoginRegister() {
+        setLoadForm(true)
+        toast.loading('Carregando...', {toastId: LOAD})
+    }
+
 
     async function submitLogin(currData: iFormLoginValues) {
-        setLoadForm(true)
-        const LOAD = "load"
-        toast.loading('Carregando...', {toastId: LOAD});
-
-        const common = () => {
-            setLoadForm(false)
-            toast.dismiss(LOAD)
-        }
-
+        startFormLoginRegister()
         api.post("/login", currData)
             .then(res => {
                 const token: string = res.data.token
@@ -35,33 +51,25 @@ export function UserProvider({ children }: iUserProviderProps) {
                 setToken(token)
                 getProfile(token)
                 setIsAuth(true)
-                toast.success('Login realizado com sucesso')
-                navigate("/dashboard")
-                common()
+                successLoginRegister("/dashboard", "Login realizado com sucesso")
             })
-            .catch(err => {
-                console.error(err)
-                toast.error('Erro: Tente novamente') 
-                common() 
-            })
+            .catch(err => errorRequests(err, "Erro: Tente novamente"))
     }
 
     async function getProfile(token: string) {
-        api.get("/clients/profile", {
-            headers: {
-                "Authorization": `Bearer ${token}`
-            }
-        })
+        api.get("/clients/profile", configTokenReq(token))
             .then(res => setUser(res.data))
             .catch(err => {
-                console.log(err)
-                toast.error("Ops! Algo deu errado")
+                errorRequests(err, "Ops! Algo deu errado")
                 setUser(null)
             })
     }
     
     async function submitRegister(currData: iFormRegisterValues) {
-        null
+        startFormLoginRegister()
+        api.post("/clients", currData)
+            .then(_ => successLoginRegister("/login", "Cliente cadastrado com sucesso"))
+            .catch(err => errorRequests(err, "Erro: Tente novamente"))
     }
 
     return (

@@ -7,8 +7,12 @@ import { iFormRegisterValues } from "./types"
 import { Input } from "../../components/Input"
 import { EMAIL, TEXT, PASSWORD, PASSWORD_C, NAME, CELLPHONE, NUMBER } from "../../constraints"
 import { Button } from "../../components/Button"
+import { useContext } from "react"
+import { UserContext } from "../../contexts/User"
 
 export function Register() {
+    const { submitRegister, loadForm } = useContext(UserContext)
+
     const { register, handleSubmit, formState: { errors } } = useForm<iFormRegisterValues>({
         mode: "onSubmit",
         resolver: yupResolver(formSchema)
@@ -19,10 +23,10 @@ export function Register() {
             <h2>Cadastro</h2>
             <section>
                 <img src={Image}/>
-                <form onSubmit={handleSubmit((e) => console.log(e))}>
+                <form onSubmit={handleSubmit(submitRegister)}>
                     <Input 
                             id={NAME}
-                            disabled={false}
+                            disabled={loadForm}
                             label="Nome"
                             placeholder="Digite o seu nome"
                             register={register(NAME)}
@@ -31,7 +35,7 @@ export function Register() {
                     />
                     <Input 
                             id={EMAIL}
-                            disabled={false}
+                            disabled={loadForm}
                             label="Email"
                             placeholder="Digite o seu email"
                             register={register(EMAIL)}
@@ -40,25 +44,25 @@ export function Register() {
                     />
                     <Input 
                             id={PASSWORD}
-                            disabled={false}
+                            disabled={loadForm}
                             label="Senha"
                             placeholder="Digite a sua senha"
                             register={register(PASSWORD)}
-                            type={TEXT}
+                            type={PASSWORD}
                             error={errors[PASSWORD]?.message}
                     />
                     <Input 
                             id={PASSWORD_C}
-                            disabled={false}
+                            disabled={loadForm}
                             label="Confirmação de senha"
                             placeholder="Confirme a sua senha"
                             register={register(PASSWORD_C)}
-                            type={TEXT}
+                            type={PASSWORD}
                             error={errors[PASSWORD_C]?.message}
                     />
                     <Input 
                             id={CELLPHONE}
-                            disabled={false}
+                            disabled={loadForm}
                             label="Telefone"
                             placeholder="Digite o seu celular"
                             register={register(CELLPHONE)}
@@ -67,7 +71,7 @@ export function Register() {
                     />
                     <Button
                         type="submit"
-                        disabled={false}
+                        disabled={loadForm}
                         text="Entrar"
                     />
                 </form>
