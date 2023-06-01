@@ -1,11 +1,13 @@
 import Image from "../../assets/home.svg"
-import { StyledMain } from "../../styles/main"
+import { StyledHome } from "./styles"
 
 export function Home() {
     return (
-        <StyledMain>
+        <StyledHome>
             <h2>Home</h2>
-            <img src={Image}/>
-        </StyledMain>
+            <picture>
+                <img src={Image}/>
+            </picture>
+        </StyledHome>
     )
 }

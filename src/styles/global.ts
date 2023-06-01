@@ -89,7 +89,7 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
-    padding: 10px;
+    font-family: var(--font-default);
 }
 
 `

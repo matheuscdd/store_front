@@ -1,9 +1,10 @@
+import { StyledInput } from "./styles"
 import { iInput } from "./types"
 
 export function Input({ id, label, register, placeholder, type, disabled, error }: iInput) {
     
     return (
-        <fieldset>
+        <StyledInput>
             <label htmlFor={id}>{label}</label>
             <input 
                 id={id} 
@@ -13,6 +14,6 @@ export function Input({ id, label, register, placeholder, type, disabled, error 
                 {...register}
             />
             <small>{error}</small>
-        </fieldset>
+        </StyledInput>
     )
 }

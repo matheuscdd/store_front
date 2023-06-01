@@ -1,15 +1,22 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { StyledHeader } from "./styles"
 import { capitalize } from "../../functions"
 import { useContext } from "react"
 import { UserContext } from "../../contexts/User"
 import { Client } from "../Client"
+import { Button } from "../Button"
 
 
 export function Header() {
-    const { isAuth } = useContext(UserContext)
+    const { isAuth, setIsAuth } = useContext(UserContext)
     const pages = ["", "login", "register"]
     if (isAuth) pages.push("dashboard")
+    const navigate = useNavigate()
+    function logout() {
+        localStorage.clear()
+        navigate("/")
+        setIsAuth(false)
+    }
 
     return (
         <StyledHeader>
@@ -37,9 +44,15 @@ export function Header() {
                 )
                 }
             </nav>
-            <section>
-                <Client/>
-            </section>
+            {isAuth && <section>
+                <Client>
+                    <Button
+                        text="Sair"
+                        action={logout}
+                    />
+                </Client>
+                
+            </section>}
         </StyledHeader>
     )
 }

@@ -5,14 +5,12 @@ import { iFormRegisterValues } from "../../pages/Register/types"
 import { api } from "../../services/api"
 import { toast } from "react-toastify"
 import { useNavigate } from "react-router-dom"
-import { iFormContactEdit } from "../../components/Dashboard/Forms/Contacts/types"
 
 
 export const UserContext = createContext({} as iUserContext)
 
 export function UserProvider({ children }: iUserProviderProps) {
     const [user, setUser] = useState<iUser | null>(null)
-    const [loadGlobal, setLoadGlobal] = useState<boolean>(true)
     const [loadForm, setLoadForm] = useState<boolean>(false)
     const [isAuth, setIsAuth] = useState<boolean>(false)
     const [token, setToken] = useState<string | null>(null)
@@ -153,8 +151,8 @@ export function UserProvider({ children }: iUserProviderProps) {
         <UserContext.Provider value={{
             user,
             loadForm,
-            loadGlobal,
             isAuth,
+            setIsAuth,
             submitLogin,
             contacts,
             submitRegister,

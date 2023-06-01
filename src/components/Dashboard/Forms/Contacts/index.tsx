@@ -7,6 +7,7 @@ import { Button } from "../../../Button"
 import { Input } from "../../../Input"
 import { useContext } from "react"
 import { UserContext } from "../../../../contexts/User"
+import { StyledForm } from "./styles"
 
 export function FormContact({ id = "", action, setState, isCreate = false }: iFormContactProps) {
     const { loadForm } = useContext(UserContext)
@@ -17,12 +18,12 @@ export function FormContact({ id = "", action, setState, isCreate = false }: iFo
     })
 
     return (
-        <form onSubmit={handleSubmit((data) => action(data, id, setState))}>
+        <StyledForm onSubmit={handleSubmit((data) => action(data, id, setState))}>
                 <Input 
                             id={NAME}
                             disabled={loadForm}
                             label="Nome"
-                            placeholder="Digite o seu nome"
+                            placeholder="Digite o nome do contato"
                             register={register(NAME)}
                             type={TEXT}
                             error={errors[NAME]?.message}
@@ -31,7 +32,7 @@ export function FormContact({ id = "", action, setState, isCreate = false }: iFo
                             id={EMAIL}
                             disabled={loadForm}
                             label="Email"
-                            placeholder="Digite o seu email"
+                            placeholder="Digite o email do contato"
                             register={register(EMAIL)}
                             type={TEXT}
                             error={errors[EMAIL]?.message}
@@ -40,16 +41,18 @@ export function FormContact({ id = "", action, setState, isCreate = false }: iFo
                             id={CELLPHONE}
                             disabled={loadForm}
                             label="Telefone"
-                            placeholder="Digite o seu celular"
+                            placeholder="Digite o celular do contato"
                             register={register(CELLPHONE)}
                             type={NUMBER}
                             error={errors[CELLPHONE]?.message}
                     />
-                    <Button
-                        type="submit"
-                        disabled={loadForm}
-                        text="Salvar"
-                    />
-        </form>
+                    <div>
+                        <Button
+                            type="submit"
+                            disabled={loadForm}
+                            text="Salvar"
+                        />
+                    </div>
+        </StyledForm>
     )
 }

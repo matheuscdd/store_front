@@ -1,18 +1,18 @@
 import { useContext, useState } from "react"
 import Image from "../../assets/dashboard.svg"
 import { Card } from "../../components/Dashboard/Card"
-import { StyledMain } from "../../styles/main"
 import { UserContext } from "../../contexts/User"
 import { Button } from "../../components/Button"
 import { Modal } from "../../components/Modal"
 import { FormContact } from "../../components/Dashboard/Forms/Contacts"
+import { StyledDashboard } from "./styles"
 
 export function Dashboard() {
     const [open, setOpen] = useState<boolean>(false)
     const { contacts, createContact } = useContext(UserContext)
 
     return (
-        <StyledMain>
+        <StyledDashboard>
             <h2>Dashboard</h2>
             <section>
                 <img src={Image}/>
@@ -47,10 +47,10 @@ export function Dashboard() {
                                 created_at={created_at}
                             />
                         ) :
-                        <h2>Não há contatos cadastrados</h2>
+                        <p>Não há contatos cadastrados</p>
                     }
                 </ul>
             </section>
-        </StyledMain>
+        </StyledDashboard>
     )
 }

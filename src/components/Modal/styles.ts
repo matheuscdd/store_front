@@ -1,18 +1,21 @@
 import styled from "styled-components"
 
 export const StyledModal = styled.div`
+	position: fixed;
     top: 0;
     left: 0;
 	height: 100%;
     width: 100%;
-	position: fixed;
     display: flex;
     align-items: center;
+    
     justify-content: center;
 	background-color: var(--purple4);
     backdrop-filter: blur(2px);
+    z-index: 5;
 
     > section {
+        z-index: 3;
         padding: 20px;
         border-radius: 5px;
         background-color: white;
@@ -20,11 +23,15 @@ export const StyledModal = styled.div`
 
         h2 {
             color: var(--gray3);
-        }
+            margin-bottom: 0;
+        } 
 
         > div {
             display: flex;
+            align-items: center;
+            justify-content: center;
             gap: 30px;
+            margin-bottom: 20px;
         }
     }
 `

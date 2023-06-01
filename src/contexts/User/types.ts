@@ -13,9 +13,9 @@ export interface iUser {
 
 export interface iUserContext {
     user: iUser | null
-    loadGlobal: boolean
     loadForm: boolean
     isAuth: boolean
+    setIsAuth: React.Dispatch<React.SetStateAction<boolean>>
     contacts: iContact[] | null
     deleteContact(id: string): Promise<void>
     submitLogin: (currData: iFormLoginValues) => Promise<void>
